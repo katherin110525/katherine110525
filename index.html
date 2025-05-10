@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katherine Ignacio | Portfolio</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav id="navbar">
+                <div class="logo">Portfolio<span class="accent-dot">.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#activities" class="nav-link">Activities</a></li>
+                    <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                </ul>
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="container">
+                <div class="home-content">
+                    <div class="home-text">
+                        <div class="greeting">Hello, I'm</div>
+                        <h1><span class="highlight">Katherine C. Ignacio</span></h1>
+                        <h2>Aspiring Web Developer</h2>
+                        <div class="separator"></div>
+                        <p>I'm a BSIT 1E student at Pampanga State Agricultural University. I'm passionate about web development with a focus on creating responsive and user-friendly websites. I'm currently expanding my skills in HTML, CSS, and JavaScript.</p>
+                        <div class="cta-buttons">
+                            <a href="#activities" class="btn primary-btn">View My Work</a>
+                            <a href="#certificates" class="btn secondary-btn">View Certificates</a>
+                        </div>
+                    </div>
+                    <div class="home-image">
+                        <div class="image-container">
+                            <img src="../assets/profile.jpg" alt="Profile Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>My Activities</h2>
+                    <p>A showcase of my lab tasks and projects</p>
+                </div>
+
+                <div class="tab-content active" id="midterm-content">
+                    <div class="activities-grid">
+                        <!-- Midterm Lab Task 1 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 1: Hands on Activity 1</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Created a basic HTML resume demonstrating fundamental HTML elements like headings, paragraphs, and text formatting without any CSS styling.</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Resume&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Your Name&lt;/h1&gt;
+    &lt;h2&gt;Web Developer&lt;/h2&gt;
+    &lt;!-- More resume content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                                <a href="./html/task1.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+
+                        <!-- Midterm Lab Task 2 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 2: Image Mapping</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Implemented image mapping using the &lt;map&gt; and &lt;area&gt; elements to create clickable regions on an image.</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-html">&lt;!-- Ordered List Example --&gt;
+&lt;ol&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Table Example --&gt;
+&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Header 1&lt;/th&gt;
+        &lt;th&gt;Header 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Data 1&lt;/td&gt;
+        &lt;td&gt;Data 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                                </div>
+                                <a href="./html/task2.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+
+                        <!-- Midterm Lab Task 3 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 3: Links, List And Tables</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Creating website with HTML Links, List And Tables</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-html">&lt;form action="#" method="post"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;
+    
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+                                </div>
+                                <a href="./html/task3.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+
+                        <!-- Midterm Lab Task 4 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 4: Questions</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Implemented image mapping using the &lt;map&gt; and &lt;area&gt; elements to create clickable regions on an image.</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-html">&lt;img src="image.jpg" usemap="#workmap" width="400" height="379"&gt;
+
+&lt;map name="workmap"&gt;
+  &lt;area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm"&gt;
+  &lt;area shape="circle" coords="337,300,44" alt="Cup" href="cup.htm"&gt;
+&lt;/map&gt;</code></pre>
+                                </div>
+                                <a href="./html/task4.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+
+                        <!-- Midterm Lab Task 5 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 5: Restaurant Menu</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Enhanced the HTML resume with CSS styling to improve visual appearance and layout.</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-css">body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}</code></pre>
+                                </div>
+                                <a href="./html/task5.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+
+                        <!-- Midterm Lab Task 6 -->
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <h3>Lab Task 6: Interactive Webpage</h3>
+                            </div>
+                            <div class="activity-body">
+                                <p>Demonstrated the use of both inline CSS and external CSS stylesheets.</p>
+                                <div class="code-preview">
+                                    <pre><code class="language-html">&lt;!-- Inline CSS --&gt;
+&lt;p style="color: blue; font-size: 18px;"&gt;This is styled with inline CSS&lt;/p&gt;
+
+&lt;!-- External CSS --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre>
+                                </div>
+                                <a href="./html/task6.html" class="btn primary-btn" target="_blank">View Task</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-divider shape-divider-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>My Certificates</h2>
+                    <p>Achievements and qualifications</p>
+                </div>
+
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="../assets/htmlcert.png" alt="HTML Certificate">
+                            <div class="overlay">
+                                <span class="certificate-date">Issued: 2023</span>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>HTML Certificate from Sololearn</h3>
+                            <p>Completed advanced training in HTML, CSS, and JavaScript</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="../assets/csscert.png" alt="CSS Certificate">
+                            <div class="overlay">
+                                <span class="certificate-date">Issued: 2023</span>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>CSS Certificate from Sololearn</h3>
+                            <p>User interface and experience design principles certification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="../assets/javascriptcert.png" alt="JavaScript Certificate">
+                            <div class="overlay">
+                                <span class="certificate-date">Issued: 2023</span>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>JavaScript Certificate from Sololearn</h3>
+                            <p>Creating websites that work on all devices and screen sizes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    Katherine<span class="accent-dot">.</span>
+                </div>
+                <p>&copy; 2023 Katherine Ignacio. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

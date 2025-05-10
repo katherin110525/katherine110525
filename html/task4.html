@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f9a8d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --success: #10b981;
+            --success-dark: #059669;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .task-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .task-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+        }
+        
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .output-container {
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .output-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Quiz styling */
+        .quiz-pages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .quiz-container {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .quiz-welcome {
+            background-color: #f0f8ff;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        
+        .quiz-container h1 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .question-card {
+            background-color: #fff7f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .radio-group {
+            text-align: left;
+            margin: 1rem 0;
+        }
+        
+        .radio-group label {
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .radio-group label:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .quiz-button {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        
+        .quiz-button:hover {
+            background-color: var(--success-dark);
+        }
+        
+        .result-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .result-card h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .result-card p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Lab Task 4: Quiz Application</h1>
+            <p class="task-subtitle">Creating an interactive quiz with HTML, CSS, and JavaScript</p>
+        </header>
+        
+        <main>
+            <!-- Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">HTML Code</h2>
+                <div class="code-container">
+                    <span class="code-label">HTML</span>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;QuestionFront&lt;/title&gt;
+        &lt;style&gt;
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f8ff;
+                text-align: center;
+                padding: 50px;
+            }
+            h1 {
+                color: #333;
+            }
+            button {
+                background-color:green;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 20px 2px;
+                cursor: pointer;
+                border: none;
+                border-radius: 12px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Welcome to the quiz!&lt;/h1&gt;
+        &lt;button type="button" onclick="window.location.href='Question1.html'"&gt;Start quiz&lt;/button&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Question 1&lt;/title&gt;
+        &lt;style&gt;
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color:pink;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 300px;
+            }
+            h1 {
+                color:black;
+            }
+            p {
+                font-size: 18px;
+                color:black;
+            }
+            .radio-group {
+                text-align: left;
+                margin: 10px 0;
+            }
+            .radio-group label {
+                display: block;
+                margin: 5px 0;
+            }
+            button {
+                background-color:green;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        &lt;/style&gt;
+        &lt;script&gt;
+            let correctAnswers = 0;
+
+            function checkAnswer() {
+                const answer = document.querySelector('input[name="question1"]:checked').value;
+                if (answer === "correct") {
+                    correctAnswers++;
+                }
+                localStorage.setItem('correctAnswers', correctAnswers);
+                window.location.href = 'Question2.html';
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Question 1&lt;/h1&gt;
+            &lt;form&gt;
+    &lt;p&gt;How many bones are there in the adult human body?&lt;/p&gt;
+                &lt;div class="radio-group"&gt;
+                    &lt;label&gt;&lt;input type="radio" name="question1" value="wrong"&gt;195&lt;/label&gt;
+            &lt;label&gt;&lt;input type="radio" name="question1" value="wrong"&gt;213&lt;/label&gt;
+         &lt;label&gt;&lt;input type="radio" name="question1" value="correct"&gt; 206&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;button type="button" onclick="checkAnswer()"&gt;Next&lt;/button&gt;
+         &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Question 2&lt;/title&gt;
+        &lt;style&gt;
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color:pink;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 300px;
+            }
+            h1 {
+                color:black;
+            }
+            p {
+                font-size: 18px;
+                color:black;
+            }
+            .radio-group {
+                text-align: left;
+                margin: 10px 0;
+            }
+            .radio-group label {
+                display: block;
+                margin: 5px 0;
+            }
+            button {
+                background-color:green;
+                color:white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        &lt;/style&gt;
+        &lt;script&gt;
+            let correctAnswers = localStorage.getItem('correctAnswers') ? parseInt(localStorage.getItem('correctAnswers')) : 0;
+
+            function checkAnswer() {
+                const answer = document.querySelector('input[name="question2"]:checked').value;
+                if (answer === "correct") {
+                    correctAnswers++;
+                }
+                localStorage.setItem('correctAnswers', correctAnswers);
+                window.location.href = 'Result.html';
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Question 2&lt;/h1&gt;
+            &lt;form&gt;
+   &lt;p&gt;Which is the longest river in the world?&lt;/p&gt;
+                &lt;div class="radio-group"&gt;
+                    &lt;label&gt;&lt;input type="radio" name="question2" value="wrong"&gt;Amazon&lt;/label&gt;
+                    &lt;label&gt;&lt;input type="radio" name="question2" value="wrong"&gt;Yangtze&lt;/label&gt;
+                    &lt;label&gt;&lt;input type="radio" name="question2" value="correct"&gt;Nile&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;button type="button" onclick="checkAnswer()"&gt;Next&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Result&lt;/title&gt;
+        &lt;script&gt;
+            window.onload = function() {
+                const correctAnswers = localStorage.getItem('correctAnswers');
+                document.getElementById('result').innerText = `You got a correct answers!`;
+                localStorage.removeItem('correctAnswers');
+            }
+        &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Quiz Result&lt;/h1&gt;
+        &lt;p id="result"&gt;&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </div>
+            </section>
+            
+            <!-- Output Display Section -->
+            <section class="section">
+                <h2 class="section-title">Output</h2>
+                <div class="output-container">
+                    <span class="output-label">Preview</span>
+                    
+                    <div class="quiz-pages">
+                        <div class="quiz-container">
+                            <h3>Welcome Page</h3>
+                            <div class="quiz-welcome">
+                                <h1>Welcome to the quiz!</h1>
+                                <button class="quiz-button">Start quiz</button>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h3>Question 1</h3>
+                            <div class="question-card">
+                                <h1>Question 1</h1>
+                                <form>
+                                    <p>How many bones are there in the adult human body?</p>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="question1" value="wrong">195</label>
+                                        <label><input type="radio" name="question1" value="wrong">213</label>
+                                        <label><input type="radio" name="question1" value="correct">206</label>
+                                    </div>
+                                    <button type="button" class="quiz-button">Next</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h3>Question 2</h3>
+                            <div class="question-card">
+                                <h1>Question 2</h1>
+                                <form>
+                                    <p>Which is the longest river in the world?</p>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="question2" value="wrong">Amazon</label>
+                                        <label><input type="radio" name="question2" value="wrong">Yangtze</label>
+                                        <label><input type="radio" name="question2" value="correct">Nile</label>
+                                    </div>
+                                    <button type="button" class="quiz-button">Next</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-container">
+                            <h3>Result Page</h3>
+                            <div class="result-card">
+                                <h1>Quiz Result</h1>
+                                <p id="result">You got correct answers!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino-Turon-Banana-Lumpia</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f9a8d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .task-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .task-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+        }
+        
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .output-container {
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .output-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Recipe styling */
+        .recipe {
+            padding: 1rem 0;
+        }
+        
+        .recipe h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .recipe h2 {
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .recipe p {
+            margin-bottom: 1rem;
+        }
+        
+        .recipe a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .recipe a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        /* Lists styling */
+        ol, ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        ol li {
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Lab Task 3: Recipe with Tables</h1>
+            <p class="task-subtitle">Creating a structured recipe page with HTML tables and lists</p>
+        </header>
+        
+        <main>
+            <!-- Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">HTML Recipe Code</h2>
+                <div class="code-container">
+                    <span class="code-label">HTML</span>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+  &lt;title&gt;Filipino-Turon-Banana-Lumpia&lt;/title&gt;
+
+  &lt;style&gt;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  &lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;h1&gt;Filipino-Turon-Banana-Lumpia&lt;/h1&gt;
+
+  &lt;p&gt;I chose filipino-turon-banana-lumpia because it's a classic, beloved Filipino street food snack that is simple, sweet, and nostalgic for many people, often associated with childhood memories and the comforting taste of fried bananas wrapped in a crispy spring roll wrapper, making it a familiar and enjoyable choice for many Filipinos and those familiar with the cuisine; it's also easy to make and readily available at markets or from street vendors.&lt;/p&gt;
+
+  &lt;table&gt;
+
+    &lt;tr&gt;
+
+      &lt;th&gt;Ingredient&lt;/th&gt;
+
+      &lt;th&gt;Quality&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;jackfruit ripe, sliced&lt;/td&gt;
+
+      &lt;td&gt;1 cup&lt;/td&gt;
+      &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;sugar&lt;/td&gt;
+
+      &lt;td&gt;1 1/2 cup&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;lumpia wrapper &lt;/td&gt;
+
+      &lt;td&gt; 12 piece &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+        &lt;td&gt;1 cup&lt;/td&gt;
+      &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;sugar&lt;/td&gt;
+
+      &lt;td&gt;1 1/2 cup&lt;/td&gt;
+&lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;lumpia wrapper &lt;/td&gt;
+
+      &lt;td&gt; 12 piece &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;cooking oil&lt;/td&gt;
+ &lt;td&gt; 2 cups&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+    &lt;td&gt;cooking oil&lt;/td&gt;
+
+      &lt;td&gt; 2 cups&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+    &lt;/tr&gt;
+
+  &lt;/table&gt;
+
+  &lt;p&gt;There are a few different theories about the origins of Turon. The one that makes the most sense to me is that it started in Filipino communities that had banana crops for farming. Workers would make these fried desserts using the surplus of bananas and se
+      &lt;td&gt;6 piece&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+  &lt;/table&gt;
+
+      &lt;td&gt;jackfruit ripe, sliced&lt;/td&gt;
+
+      &lt;td&gt;1 cup&lt;/td&gt;
+      &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;sugar&lt;/td&gt;
+
+      &lt;td&gt;1 1/2 cup&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;lumpia wrapper &lt;/td&gt;
+
+      &lt;td&gt; 12 piece &lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+      &lt;td&gt;cooking oil&lt;/td&gt;
+
+      &lt;td&gt; 2 cups&lt;/td&gt;
+
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+
+    &lt;/tr&gt;
+
+  &lt;/table&gt;
+ &lt;p&gt;There are a few different theories about the origins of Turon. The one that makes the most sense to me is that it started in Filipino communities that had banana crops for farming. Workers would make these fried desserts using the surplus of bananas and sell them on the roadside.Traditionally made with saba bananas, commonly found in the Philippines, you'll still find turon as a popular Filipino street food. It's usually enjoyed as an afternoon snack at merienda. Or, as a dessert.&lt;/p&gt;
+&lt;h2&gt;Instructions&lt;/h2&gt;
+
+  &lt;ol&gt;&lt;/ol&gt;
+
+  &lt;li&gt;Roll the banana on the sugar plate and ensure that the banana is coated with enough sugar.&lt;/li&gt;
+
+  &lt;li&gt;Place the banana with sugar coating on the lumpia wrapper. Add a slice of ripe jackfruit on top.&lt;/li&gt;
+
+  &lt;li&gt;Fold and lock the spring roll wrapper, use water to seal the edge.&lt;/li&gt;
+
+  &lt;li&gt;In a pan, heat the oil and put-in some sugar.Wait until the brown sugar floats.&lt;/li&gt;
+
+  &lt;li&gt;Put-in the wrapped banana and fry until the wrapper turns golden brown and the extra sugar sticks on wrapper.&lt;/li&gt;
+
+  &lt;li&gt;Serve hot as a dessert or snack. Share and Enjoy!&lt;/li&gt;
+
+  &lt;ol&gt;&lt;/ol&gt;
+
+  &lt;p&gt;
+  &lt;p&gt;To learn more Filipino dessert recipes, visit &lt;a href="https://www.hungryhuy.com/turon-recipe/"&gt;Turon Recipe&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+                </div>
+            </section>
+            
+            <!-- Output Display Section -->
+            <section class="section">
+                <h2 class="section-title">Output Recipe</h2>
+                <div class="output-container">
+                    <span class="output-label">Preview</span>
+                    
+                    <div class="recipe">
+                        <h1>Filipino-Turon-Banana-Lumpia</h1>
+
+                        <p>I chose filipino-turon-banana-lumpia because it's a classic, beloved Filipino street food snack that is simple, sweet, and nostalgic for many people, often associated with childhood memories and the comforting taste of fried bananas wrapped in a crispy spring roll wrapper, making it a familiar and enjoyable choice for many Filipinos and those familiar with the cuisine; it's also easy to make and readily available at markets or from street vendors.</p>
+
+                        <table>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Quantity</th>
+                            </tr>
+                            <tr>
+                                <td>Jackfruit ripe, sliced</td>
+                                <td>1 cup</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>1 1/2 cup</td>
+                            </tr>
+                            <tr>
+                                <td>Lumpia wrapper</td>
+                                <td>12 piece</td>
+                            </tr>
+                            <tr>
+                                <td>Cooking oil</td>
+                                <td>2 cups</td>
+                            </tr>
+                        </table>
+
+                        <p>There are a few different theories about the origins of Turon. The one that makes the most sense to me is that it started in Filipino communities that had banana crops for farming. Workers would make these fried desserts using the surplus of bananas and sell them on the roadside. Traditionally made with saba bananas, commonly found in the Philippines, you'll still find turon as a popular Filipino street food. It's usually enjoyed as an afternoon snack at merienda. Or, as a dessert.</p>
+
+                        <h2>Instructions</h2>
+
+                        <ol>
+                            <li>Roll the banana on the sugar plate and ensure that the banana is coated with enough sugar.</li>
+                            <li>Place the banana with sugar coating on the lumpia wrapper. Add a slice of ripe jackfruit on top.</li>
+                            <li>Fold and lock the spring roll wrapper, use water to seal the edge.</li>
+                            <li>In a pan, heat the oil and put-in some sugar. Wait until the brown sugar floats.</li>
+                            <li>Put-in the wrapped banana and fry until the wrapper turns golden brown and the extra sugar sticks on wrapper.</li>
+                            <li>Serve hot as a dessert or snack. Share and Enjoy!</li>
+                        </ol>
+
+                        <p>To learn more Filipino dessert recipes, visit <a href="https://www.hungryhuy.com/turon-recipe/">Turon Recipe</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

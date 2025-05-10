@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f9a8d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .task-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .task-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+        }
+        
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .output-container {
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .output-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Menu styling */
+        .menu {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .menu h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .menu h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .menu h2 {
+            color: var(--primary-dark);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        
+        .menu table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu table th,
+        .menu table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        
+        .menu table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .menu table td:last-child {
+            text-align: right;
+            font-weight: 500;
+        }
+        
+        .menu ul, .menu ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-category {
+            font-weight: 700;
+        }
+        
+        .emoji {
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Lab Task 5: Restaurant Menu</h1>
+            <p class="task-subtitle">Creating a styled menu with HTML and CSS</p>
+        </header>
+        
+        <main>
+            <!-- Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">HTML and CSS Code</h2>
+                <div class="code-container">
+                    <span class="code-label">HTML & CSS</span>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Delish Menu&lt;/title&gt;
+
+&lt;style&gt;
+
+body {
+
+  font-family: sans-serif;
+
+}
+
+table {
+
+  width: 50%;
+
+  border-collapse: collapse;
+
+  margin: 20px auto;
+
+}
+  th, td {
+
+  border: 1px solid #ddd;
+
+  padding: 8px;
+
+  text-align: left;
+
+}
+
+th {
+
+background-color: #f2f2f2;
+
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Delish Menu&lt;/h1&gt;
+
+&lt;table&gt;
+
+  &lt;tr&gt;
+
+    &lt;th&gt;Category&lt;/th&gt;
+
+    &lt;th&gt;Item Name&lt;/th&gt;
+
+    &lt;th&gt;Price&lt;/th&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;&lt;b&gt;🍔Burgers&lt;/b&gt;&lt;/td&gt;
+
+    &lt;td&gt;Cheeseburger&lt;/td&gt;
+
+    &lt;td&gt;₱35.00&lt;/td&gt;
+      &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;&lt;/td&gt;
+
+    &lt;td&gt;Hamburger&lt;/td&gt;
+
+    &lt;td&gt;₱40.00&lt;/td&gt;
+&lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;&lt;/td&gt;
+
+    &lt;td&gt;Pork Tacos&lt;/td&gt;
+
+    &lt;td&gt;₱65.00&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+     &lt;td&gt;&lt;b&gt;🍕Pizza&lt;/b&gt;&lt;/td&gt;
+
+    &lt;td&gt;Pepperoni Pizza&lt;/td&gt;
+
+    &lt;td&gt;₱295.00&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;&lt;/td&gt;
+
+    &lt;td&gt;Hawaiian Pizza&lt;/td&gt;
+
+    &lt;td&gt;₱285.00&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;&lt;b&gt;🥤Drinks&lt;/b&gt;&lt;/td&gt;
+
+    &lt;td&gt;Cola&lt;/td&gt;
+
+&lt;td&gt;₱20.00&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+
+    &lt;td&gt;Lemonade&lt;/td&gt;
+
+    &lt;td&gt;₱15.00&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;
+  
+
+&lt;h2&gt;Available Drinks&lt;/h2&gt;
+&lt;ul&gt;
+
+  &lt;li&gt;Cola&lt;/li&gt;
+
+  &lt;li&gt;Lemonade&lt;/li&gt;
+
+  &lt;li&gt;Iced Tea&lt;/li&gt;
+
+  &lt;li&gt;Orange Juice&lt;/li&gt;
+
+&lt;/ul&gt;
+  &lt;h2&gt;Top Selling Dishes&lt;/h2&gt;
+&lt;ol&gt;
+
+  &lt;li&gt;Cheeseburger&lt;/li&gt;
+
+  &lt;li&gt;Pepperoni Pizza&lt;/li&gt;
+
+  &lt;li&gt;Beef Taco&lt;/li&gt;
+
+&lt;/ol&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                </div>
+            </section>
+            
+            <!-- Output Display Section -->
+            <section class="section">
+                <h2 class="section-title">Output</h2>
+                <div class="output-container">
+                    <span class="output-label">Preview</span>
+                    
+                    <div class="menu">
+                        <h1>Delish Menu</h1>
+                        
+                        <table>
+                            <tr>
+                                <th>Category</th>
+                                <th>Item Name</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td class="menu-category"><span class="emoji">🍔</span>Burgers</td>
+                                <td>Cheeseburger</td>
+                                <td>₱35.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Hamburger</td>
+                                <td>₱40.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Pork Tacos</td>
+                                <td>₱65.00</td>
+                            </tr>
+                            <tr>
+                                <td class="menu-category"><span class="emoji">🍕</span>Pizza</td>
+                                <td>Pepperoni Pizza</td>
+                                <td>₱295.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Hawaiian Pizza</td>
+                                <td>₱285.00</td>
+                            </tr>
+                            <tr>
+                                <td class="menu-category"><span class="emoji">🥤</span>Drinks</td>
+                                <td>Cola</td>
+                                <td>₱20.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Lemonade</td>
+                                <td>₱15.00</td>
+                            </tr>
+                        </table>
+                        
+                        <h2>Available Drinks</h2>
+                        <ul>
+                            <li>Cola</li>
+                            <li>Lemonade</li>
+                            <li>Iced Tea</li>
+                            <li>Orange Juice</li>
+                        </ul>
+                        
+                        <h2>Top Selling Dishes</h2>
+                        <ol>
+                            <li>Cheeseburger</li>
+                            <li>Pepperoni Pizza</li>
+                            <li>Beef Taco</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f9a8d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --success: #10b981;
+            --success-dark: #059669;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .task-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .task-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+        }
+        
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .output-container {
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .output-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Interactive page styling */
+        .interactive-demo {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .demo-content {
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-content h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .demo-paragraph {
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 1rem;
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        
+        .demo-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .note-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .note-box strong {
+            color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Lab Task 6: Interactive Webpage</h1>
+            <p class="task-subtitle">Demonstrating JavaScript interactivity and dynamic styling</p>
+        </header>
+        
+        <main>
+            <!-- HTML Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">HTML Code</h2>
+                <div class="code-container">
+                    <span class="code-label">HTML</span>
+&lt;!DOCTYPE hmtl&gt;
+&lt;html&gt;
+&lt;head&gt;
+  
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Interactive Paragraph&lt;/title&gt;
+  &lt;style&gt;
+     #demo {
+      font-size: 16px;
+      background-color: white;
+      padding: 10px;
+      border: 1px solid black;
+      display: block;
+    }
+      &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Interactive Webpage&lt;/h1&gt;
+  &lt;p id="demo"&gt;I'm Katherine Ignacio, a first year student in BSIT. This is my activity in creating a simple Interactive Webpagefrom scratch using CodePen.io that demonstrates dynamic styling with JavaScript.&lt;/p&gt;
+    &lt;button id='styleButton' onclick="changeStyle()"&gt;Change Style&lt;/button&gt;
+  &lt;button onclick="resetStyle()"&gt;Reset Style&lt;/button&gt;
+  &lt;button onclick="updateText()"&gt;Update Text&lt;/button&gt;
+   &lt;button onclick="toggleVisibility()"&gt;Toggle Visibility&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                </div>
+            </section>
+            
+            <!-- CSS Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">CSS Code</h2>
+                <div class="code-container">
+                    <span class="code-label">CSS</span>
+#demo {
+  font-size: 40px;
+  color: black;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  display: block;
+}
+                </div>
+            </section>
+            
+            <!-- JavaScript Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">JavaScript Code</h2>
+                <div class="code-container">
+                    <span class="code-label">JavaScript</span>
+let colors = ["green", "orange", "yellow"];
+
+let currentIndex = 0;
+function changeStyle() {
+  let para = document.getElementById("demo");
+  para.style.fontSize = "20px";
+  para.style.color = "white";
+  para.style.backgroundColor = colors[currentIndex];
+  currentIndex = (currentIndex + 1) % colors.length;
+}
+
+function resetStyle() {
+  let para = document.getElementById("demo");
+  para.style.fontSize = "16px";
+  para.style.color = "var(--dark)";
+  para.style.backgroundColor = "white";
+}
+function updateText() {
+  document.getElementById("demo").innerText = "The text has been updated!";
+}
+function toggleVisibility() {
+  let para = document.getElementById("demo");
+  if (para.style.display === "none") {
+    para.style.display = "block";
+  } else {
+    para.style.display = "none";
+ }
+}
+document.getElementById("demo").addEventListener("click", function () {
+  alert("You clicked the paragraph!");
+});
+                </div>
+            </section>
+            
+            <!-- Output Display Section -->
+            <section class="section">
+                <h2 class="section-title">Output</h2>
+                <div class="output-container">
+                    <span class="output-label">Preview</span>
+                    
+                    <div class="interactive-demo">
+                        <div class="demo-content">
+                            <h1>Interactive Webpage</h1>
+                            
+                            <p id="demo" class="demo-paragraph">
+                                I'm Katherine Ignacio, a first year student in BSIT. This is my activity in creating a simple Interactive Webpage from scratch using CodePen.io that demonstrates dynamic styling with JavaScript.
+                            </p>
+                            
+                            <div class="button-group">
+                                <button class="demo-button" onclick="changeStyle()">Change Style</button>
+                                <button class="demo-button" onclick="resetStyle()">Reset Style</button>
+                                <button class="demo-button" onclick="updateText()">Update Text</button>
+                                <button class="demo-button" onclick="toggleVisibility()">Toggle Visibility</button>
+                            </div>
+                            
+                            <div class="note-box">
+                                <p><strong>Note:</strong> The interactive functionality is now working! Click the buttons to see their effects.</p>
+                                <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                                    <li>Change Style: Changes the paragraph's color and font size</li>
+                                    <li>Reset Style: Resets to default styling</li>
+                                    <li>Update Text: Changes the paragraph text</li>
+                                    <li>Toggle Visibility: Shows/hides the paragraph</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // Colors for style changes
+        let colors = ["green", "orange", "yellow"];
+        
+        // Index to track which color to use
+        let currentIndex = 0;
+        
+        // Change style function
+        function changeStyle() {
+            let para = document.getElementById("demo");
+            para.style.fontSize = "20px";
+            para.style.color = "white";
+            para.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+        
+        // Reset style function
+        function resetStyle() {
+            let para = document.getElementById("demo");
+            para.style.fontSize = "16px";
+            para.style.color = "var(--dark)";
+            para.style.backgroundColor = "white";
+        }
+        
+        // Update text function
+        function updateText() {
+            document.getElementById("demo").innerText = "The text has been updated!";
+        }
+        
+        // Toggle visibility function
+        function toggleVisibility() {
+            let para = document.getElementById("demo");
+            if (para.style.display === "none") {
+                para.style.display = "block";
+            } else {
+                para.style.display = "none";
+            }
+        }
+        
+        // Click event for the paragraph
+        document.getElementById("demo").addEventListener("click", function() {
+            alert("You clicked the paragraph!");
+        });
+    </script>
+</body>
+</html>

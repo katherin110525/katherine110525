@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - HTML Only</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f9a8d4;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .task-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .task-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+        }
+        
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            margin-right: 0.75rem;
+            border-radius: 2px;
+        }
+        
+        .code-container {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 0 8px;
+        }
+        
+        .output-container {
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .output-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        mark {
+            background-color: #fef9c3;
+            padding: 0.125rem 0.25rem;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="task-title">Lab Task 1: HTML Basic Elements</h1>
+            <p class="task-subtitle">Learning fundamental HTML elements and structure</p>
+        </header>
+        
+        <main>
+            <!-- Code Display Section -->
+            <section class="section">
+                <h2 class="section-title">HTML Code</h2>
+                <div class="code-container">
+                    <span class="code-label">HTML</span>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt; Katherine Ignacio&lt;/title&gt;
+
+&lt;h1&gt; Katherine Ignacio&lt;/h1&gt;
+
+&lt;h2&gt; HTML Hands-On Activity&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt; &lt;b&gt; Introduction: &lt;/b&gt; My name is &lt;em&gt; Ignacio Katherine.&lt;/em&gt; &lt;mark&gt;My hobbies are cooking, Reading,Listening to music, watching movies &lt;/p&gt;
+
+&lt;p&gt; In this activity, I learned how to create basic HTML structures, use different tags and apply special elements like,highlight and line breaks. &lt;/p&gt;&lt;br&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;This is a line break example. &lt;/p&gt;&lt;br&gt;
+
+&lt;p&gt; See how this text starts on a new line. &lt;/p&gt;&lt;br&gt;
+
+&lt;p&gt; Water can be represented as H2O and the square of 3 is 3&lt;sup&gt;2&lt;/sub&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+                </div>
+            </section>
+            
+            <!-- Output Display Section -->
+            <section class="section">
+                <h2 class="section-title">Output Result</h2>
+                <div class="output-container">
+                    <span class="output-label">Preview</span>
+                    
+                    <h1> Katherine Ignacio</h1>
+
+                    <h2> HTML Hands-On Activity</h2>
+
+                    <hr>
+
+                    <p> <b> Introduction: </b> My name is <em> Ignacio Katherine.</em> <mark>My hobbies are cooking, Reading,Listening to music, watching movies</mark> </p>
+
+                    <p> In this activity, I learned how to create basic HTML structures, use different tags and apply special elements like,highlight and line breaks. </p><br>
+
+                    <hr>
+
+                    <p>This is a line break example. </p><br>
+
+                    <p> See how this text starts on a new line. </p><br>
+
+                    <p> Water can be represented as H2O and the square of 3 is 3<sup>2</sup></p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
